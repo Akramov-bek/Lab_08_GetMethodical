@@ -45,7 +45,7 @@ public class DevTest {
 //        confirm = SafeInput.getYNConfirm(in, "Do you want to continue?");
 //        System.out.println("User confirmation: " + confirm);
 */
-        String email = getRegExString(in, "Enter your email: ", "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+        String email = SafeInput.getRegExString(in, "Enter your email: ", "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
         System.out.println("Your email is: " + email);
 
 //        // 2nd test for Library

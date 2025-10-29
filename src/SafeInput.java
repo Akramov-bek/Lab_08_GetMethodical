@@ -12,11 +12,10 @@ public class SafeInput
     {
         String retString = "";
         do {
-            System.out.print(prompt);
+            System.out.print(prompt + ": ");
             retString = pipe.nextLine();
-            if (!retString.isEmpty())
+            if (retString.isEmpty())
             {
-
                 System.out.println("You must enter at least one character. Please try again.");
             }
         }while(retString.isEmpty());
@@ -35,7 +34,7 @@ public class SafeInput
         boolean done = false;
 
         do {
-            System.out.print(prompt);
+            System.out.print(prompt + ": ");
             if (pipe.hasNextInt()) {
                 retInt = pipe.nextInt();
                 pipe.nextLine(); // consume newline
@@ -63,7 +62,7 @@ public class SafeInput
         boolean done = false;
 
         do {
-            System.out.print(prompt);
+            System.out.print(prompt + ": ");
             if (pipe.hasNextDouble())
             {
                 retVal = pipe.nextDouble();
@@ -181,4 +180,40 @@ public class SafeInput
 
         return retVal;
     }
+
+    /**
+     * Get a string that matches the provided regular expression
+     *
+     * @param pipe   - Scanner to use for input
+     * @param prompt - prompt to display to the user to indicate what to enter and the RegEx
+     * @param regEx  - regular expression the input must match
+     * @return - a string that matches the regular expression
+     */
+    public static String getRegExString(Scanner pipe, String prompt, String regEx)
+    {
+        {
+            String response = "";
+            boolean gotIt = false;
+
+            do
+            {
+                System.out.print("\n" + prompt + ": ");
+                response = pipe.nextLine();
+
+                if (response.matches(regEx))
+                {
+                    gotIt = true;
+                }
+                else
+                {
+                    System.out.println("Invalid input: \"" + response + "\"");
+                    System.out.println("Input must match the pattern: " + regEx);
+                }
+
+            } while (!gotIt);
+
+            return response;
+        }
+    }
+
 }
